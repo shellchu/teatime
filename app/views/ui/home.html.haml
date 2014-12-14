@@ -1,9 +1,36 @@
-.jumbotron
-  %h1 Its Tea Time!
-  %p Its time to relax and get beverage delivery. An easy way to ask colleague for group buying.
-  .row
-    .col-md-3
-      Have an account? Please
-      %a(href="") Sign in
-    .col-md-offset-5.col-md-3
-      %a.btn.btn-lg.btn-primary(href="" role="button") Sign Up
+.col-md-offset-1.col-md-10
+  %h1
+    Tea Time World!
+    %small Find or Create one.
+  %botton.btn.btn-primary Create
+  %table.table.table-hover
+    %thead
+      %tr
+        %td Topic
+        %td Host
+        %td End Date
+    %tbody
+      %tr
+        %td CoCo
+        %td John Smith
+        %td=2.days.from_now
+        %td
+          %button.btn.btn-primary Join
+      %tr
+        %td Cama
+        %td Mary
+        %td=4.days.ago
+        %td
+          %button.btn.btn-primary(disabled="disabled") Join
+      %tr
+        %td Orange
+        %td Tom Wang
+        %td=10.days.ago
+        %td
+          %button.btn.btn-primary(disabled="disabled") Join
+      %tr
+        %td jamba juice
+        %td Orga Shih
+        %td=16.days.ago
+        %td
+          %button.btn.btn-primary(disabled="disabled") Join
