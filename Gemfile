@@ -62,3 +62,4 @@ end
 
 
 gem 'haml-rails'
+gem 'twitter-bootstrap-rails'
