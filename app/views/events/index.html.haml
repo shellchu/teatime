@@ -1,0 +1,19 @@
+.col-md-offset-1.col-md-10
+  %h1
+    Tea Time World!
+    %small Find or Create one.
+  %botton.btn.btn-primary.col-md-offset-10 Create
+  %table.table.table-hover
+    %thead
+      %tr
+        %td Topic
+        %td Host
+        %td End Time
+    %tbody
+      - @events.each do |event|
+        %tr
+          %td= event.shop_name
+          %td= event.host
+          %td= event.end_time
+          %td
+            =link_to "Join", event_path(event), class: "btn btn-primary" if event.active?
