@@ -1,0 +1,15 @@
+.col-md-offset-2.col-md-8
+  %form.form-horizontal(role="form")
+    .form-group
+      %label.col-md-2.control-label(for="inputShop") Shop
+      .col-md-6
+        %select.form-control
+          %option CoCo
+          %option Starbucks
+    .form-group
+      %label.col-md-2.control-label(for="inputEndTime") End Time
+      .col-md-6
+        %input.form-control(type='datetime-local')
+    .form-group
+      .col-md-offset-2.col-md-2
+        %button.btn.btn-primary(type="submit") Apply
