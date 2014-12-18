@@ -1,6 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe Event, :type => :model do
+  it { should belong_to(:shop) }
+  it { should have_many(:orders) }
+
   describe "#active?" do
     it "returns ture when the end time dose not be reached" do
       event = Fabricate(:event, end_time: 1.day.from_now)
@@ -19,6 +22,13 @@ RSpec.describe Event, :type => :model do
       event3 = Fabricate(:event, end_time: 1.day.ago)
 
       expect(Event.all).to eq([event2, event1, event3])
+    end
+  end
+
+  describe "#shop_name" do
+    it "returns shop name of event" do
+      event = Fabricate(:event)
+      expect(event.shop_name).to eq(event.shop.name)
     end
   end
 end

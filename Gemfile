@@ -52,7 +52,7 @@ gem 'dotenv-rails'
 #for testing
 group :development, :test do
   gem 'rspec-rails', '~> 3.0.0'
-  gem 'shoulda-matchers', '~>2.6.2', require: false
+  gem 'shoulda-matchers', '~>2.7.0', require: false
   gem 'simplecov', '~>0.9.0', :require => false, :group => :test
   gem 'faker', '~>1.4.2'
   gem 'capybara', '~>2.4.0'

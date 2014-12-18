@@ -1,0 +1,36 @@
+.col-md-offset-1.col-md-10
+  .well
+    %h1= @event.shop_name
+    .row
+      .col-md-3
+        %p= "Address: #{@shop.address}"
+        %p= "Phone: #{@shop.phone}"
+      .col-md-offset-7.col-md-2
+        %button.btn.btn-primary.btn-lg Menu
+
+  %button.btn.btn-primary Order
+  %table.table.table-hover
+    %thead
+      %tr
+        %td #
+        %td Name
+        %td Beverage
+        %td Hot/Cold
+        %td Ice
+        %td Sugar
+        %td Size
+        %td Price
+        %td
+    %tbody
+      - @orders.each_with_index do |order, index|
+        %tr
+          %td= index
+          %td= order.user
+          %td= order.beverage_name
+          %td= show_order_type(order.hot)
+          %td= show_order_ice(order.ice)
+          %td= order.sugar
+          %td= order.size
+          %td= order.price
+          %td
+            %button.btn.btn-primary.btn-sm Edit
