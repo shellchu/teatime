@@ -51,7 +51,7 @@ gem 'dotenv-rails'
 
 #for testing
 group :development, :test do
-  gem 'rspec-rails', '~> 3.0.0'
+  gem 'rspec-rails', '~> 3.1.0'
   gem 'shoulda-matchers', '~>2.7.0', require: false
   gem 'simplecov', '~>0.9.0', :require => false, :group => :test
   gem 'faker', '~>1.4.2'
@@ -64,3 +64,5 @@ end
 
 gem 'haml-rails'
 gem 'twitter-bootstrap-rails'
+gem 'bootstrap_form'
+gem 'bcrypt', '~> 3.1.7'

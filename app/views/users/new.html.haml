@@ -1,0 +1,10 @@
+%section.sign_up
+  .form-signup
+    =bootstrap_form_for(@user) do |f|
+      %h2.form-signup-heading Sign Up
+      = f.alert_message "Please check your input below.", error_summary: false
+      = f.email_field :email, hide_label: :true, placeholder: "Email address", autofocus: true
+      = f.password_field :password, hide_label: :true, placeholder: "Password"
+      = f.password_field :password_confirmation, hide_label: :true, placeholder: "Password confirmation"
+      = f.text_field :full_name, hide_label: :true, placeholder: "Full name"
+      = f.submit "Sign up", class: "btn btn-lg btn-primary btn-block"

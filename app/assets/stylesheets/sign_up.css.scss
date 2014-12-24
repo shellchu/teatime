@@ -28,17 +28,3 @@ section.sign_up {
 .form-signup .form-control:focus {
   z-index: 2;
 }
-.form-signup input[type="email"] {
-  margin-bottom: 10px;
-}
-.form-signup input#inputPassword {
-  margin-bottom: -1px;
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: 0;
-}
-
-.form-signup input#inputPasswordConfrim {
-  margin-bottom: 10px;
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
-}
