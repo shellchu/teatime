@@ -1,19 +1,20 @@
 %nav.navbar.navbar-default(role="navigation")
   .container-fluid
     .navbar-header
-      %a.navbar-brand(herf="#") Tea Time
+      =link_to "Tea Time", root_path, class: "navbar-brand"
     .navbar-collapse.collapse#navbar
-      %ul.nav.navbar-nav
-        %li
-          %a(href="#") Home
-        %li
-          %a(href="#") Shops
-      %ul.nav.navbar-nav.navbar-right
-        %li.dropdown
-          %a(href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false")
-            Welcome, XXX
-          %ul.dropdown-menu(role="menu")
-            %li
-              %a(href="#") Events
-            %li
-              %a(href="#") Sign out  
+      - if current_user
+        %ul.nav.navbar-nav
+          %li
+            =link_to "Home", home_path
+          %li
+            %a(href="#") Shops
+        %ul.nav.navbar-nav.navbar-right
+          %li.dropdown
+            %a(href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false")
+              = "Welcome, #{current_user.full_name}"
+            %ul.dropdown-menu(role="menu")
+              %li
+                %a(href="#") Events
+              %li
+                %a(href="#") Sign out
