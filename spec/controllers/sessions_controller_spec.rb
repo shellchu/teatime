@@ -53,4 +53,20 @@ RSpec.describe SessionsController, :type => :controller do
       end
     end
   end
+
+  describe "GET destroy" do
+    before do
+      session[:user_id] = Fabricate(:user).id
+      get :destroy
+    end
+    it "redirects to root page" do
+      expect(response).to redirect_to root_path
+    end
+    it "cleans the user in the session" do
+      expect(session[:user_id]).to be_nil
+    end
+    it "flashes the success message" do
+      expect(flash[:success]).not_to be_blank
+    end
+  end
 end

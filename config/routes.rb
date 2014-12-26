@@ -5,7 +5,8 @@ Rails.application.routes.draw do
   get 'home', to: 'events#index'
   get 'sign_in', to: 'sessions#new'
   get 'sign_up', to: 'users#new'
+  get 'sign_out', to: 'sessions#destroy'
   resources :events, only: [:index, :show]
   resources :users, only: [:create]
-  resources :sessions, only: [:create]
+  resources :sessions, only: [:create, :destroy]
 end
