@@ -8,7 +8,7 @@ RSpec.describe SessionsController, :type => :controller do
     end
 
     it "redirects to home page if user have signed in" do
-      session[:user_id] = Fabricate(:user).id
+      set_user
       get :new
       expect(response).to redirect_to home_path
     end
@@ -56,7 +56,7 @@ RSpec.describe SessionsController, :type => :controller do
 
   describe "GET destroy" do
     before do
-      session[:user_id] = Fabricate(:user).id
+      set_user
       get :destroy
     end
     it "redirects to root page" do
