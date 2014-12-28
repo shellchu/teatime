@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
       redirect_to home_path, flash: {success: "You are signed in, enjoy!"}
     else
       flash[:danger] = "Invaild email or password."
-      render :new
+      redirect_to sign_in_path
     end
   end
 

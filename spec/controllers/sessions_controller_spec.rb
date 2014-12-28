@@ -41,7 +41,7 @@ RSpec.describe SessionsController, :type => :controller do
       end
 
       it "renders new page" do
-        expect(response).to render_template :new
+        expect(response).to redirect_to sign_in_path
       end
 
       it "does not sign in user in the session" do
