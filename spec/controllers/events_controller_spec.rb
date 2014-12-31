@@ -36,4 +36,50 @@ RSpec.describe EventsController, :type => :controller do
       expect(assigns(:orders)).to eq(event.orders)
     end
   end
+
+  describe "GET new" do
+    it_behaves_like "require_login" do
+      let(:action) { get :new }
+    end
+
+    it "sets @event variabe which are owned by current user" do
+      get :new
+      expect(assigns(:event)).to be_a_new(Event)
+      expect(assigns(:event).owner).to eq(user)
+    end
+  end
+
+  describe "POST create" do
+    let(:shop) { Fabricate(:shop) }
+    it_behaves_like "require_login" do
+      let(:action) { post :create, event: { shop_id: shop.id, end_time: 1.day.from_now } }
+    end
+
+    context "with vaild input" do
+      before do
+        post :create, event: { shop_id: shop.id, end_time: 1.day.from_now }
+      end
+      it "redirects to home page" do
+        expect(response).to redirect_to home_path
+      end
+      it "creates event record" do
+        expect(Event.count).to eq(1)
+      end
+    end
+
+    context "with invaild input" do
+      before do
+        post :create, event: { shop_id: shop.id, end_time: 1.day.ago }
+      end
+      it "renders the :new template" do
+        expect(response).to render_template :new
+      end
+      it "does not create event record" do
+        expect(Event.count).to eq(0)
+      end
+      it "sets the @event variable" do
+        expect(assigns(:event)).to be_kind_of(Event)
+      end
+    end
+  end
 end

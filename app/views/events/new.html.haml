@@ -1,0 +1,6 @@
+.col-md-offset-2.col-md-8
+  = bootstrap_form_for @event, layout: :horizontal, label_col: "col-md-2", control_col: "col-md-6" do |f|
+    = f.collection_select :shop_id, Shop.all, :id, :name
+    = f.datetime_local_field :end_time
+    = f.form_group do
+      = f.submit "Apply", class: "btn btn-primary"

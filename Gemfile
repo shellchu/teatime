@@ -61,6 +61,9 @@ group :development, :test do
   gem 'fabrication'
 end
 
+group :development do
+  gem 'meta_request'
+end
 
 gem 'haml-rails'
 gem 'twitter-bootstrap-rails'
