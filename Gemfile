@@ -7,6 +7,7 @@ gem 'rails', '4.2.0.rc2'
 # Use Postgresql
 gem 'pg'
 gem 'rails_12factor'
+gem "therubyracer"
 gem "less-rails"
 
 # Use SCSS for stylesheets
