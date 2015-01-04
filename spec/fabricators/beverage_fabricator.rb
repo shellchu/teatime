@@ -1,5 +1,5 @@
 Fabricator(:beverage) do
-  name { Faker::Name.name }
+  name { "#{Faker::Name.name} Tea" }
   description { Faker::Lorem.sentence }
   hot { [true, false].sample }
   cold { [true, false].sample }

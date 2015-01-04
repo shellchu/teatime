@@ -8,7 +8,7 @@
       .col-md-offset-7.col-md-2
         %button.btn.btn-primary.btn-lg Menu
 
-  %button.btn.btn-primary Order
+  = link_to "Order", new_event_order_path(@event), class: "btn btn-primary"
   %table.table.table-hover
     %thead
       %tr
@@ -25,7 +25,7 @@
       - @orders.each_with_index do |order, index|
         %tr
           %td= index
-          %td= order.user
+          %td= order.user_full_name
           %td= order.beverage_name
           %td= show_order_type(order.hot)
           %td= show_order_ice(order.ice)

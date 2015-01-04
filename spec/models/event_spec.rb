@@ -18,9 +18,9 @@ RSpec.describe Event, :type => :model do
 
   describe "default_scope order" do
     it "always sort by end_time DESC" do
-      event1 = Fabricate(:event, end_time: 1.day.from_now)
-      event2 = Fabricate(:event, end_time: 2.day.from_now)
-      event3 = Fabricate(:event, end_time: Date.today)
+      event1 = Fabricate(:event, end_time: 2.days.from_now)
+      event2 = Fabricate(:event, end_time: 3.days.from_now)
+      event3 = Fabricate(:event, end_time: 1.day.from_now)
 
       expect(Event.all).to eq([event2, event1, event3])
     end
@@ -30,6 +30,13 @@ RSpec.describe Event, :type => :model do
     it "returns shop name of event" do
       event = Fabricate(:event)
       expect(event.shop_name).to eq(event.shop.name)
+    end
+  end
+
+  describe "#shop_beverages" do
+    it "returns shop's beverages of event" do
+      event = Fabricate(:event)
+      expect(event.shop_beverages).to match_array(event.shop.beverages)
     end
   end
 

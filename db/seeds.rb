@@ -5,8 +5,17 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-events = Fabricate.times(5, :event)
-tomorrow_teatime = Fabricate(:event, end_time: 10.day.from_now)
-order = Fabricate.times(10, :order) do
-  event tomorrow_teatime
+User.create!(email: "orga@xxx.com", password: "1234", password_confirmation: "1234", full_name: "Orga")
+
+shops = Fabricate.times(5, :shop)
+beverages = Fabricate.times(100, :beverage) do
+  shop shops.sample
+end
+
+events = Fabricate.times(5, :event) do
+  shop shops.sample
+end
+
+orders = Fabricate.times(10, :order) do
+  event events.sample
 end

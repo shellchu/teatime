@@ -4,11 +4,12 @@ class Event < ActiveRecord::Base
   belongs_to :owner, class_name: 'User'
   has_many :orders
   delegate :name, to: :shop, prefix: :shop
-
+  delegate :beverages, to: :shop, prefix: :shop
+  
   validate :end_time_cannot_be_in_the_past
 
   def host
-    "Fake Host"
+    owner.full_name
   end
 
   def active?
