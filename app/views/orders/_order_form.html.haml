@@ -1,0 +1,9 @@
+.col-md-offset-2.col-md-8
+  = bootstrap_form_for [@event, @order], layout: :horizontal, label_col: "col-md-2", control_col: "col-md-6" do |f|
+    = f.collection_select :beverage_id, @event.shop_beverages, :id, :name_with_size
+    = f.form_group :hot do
+      = f.check_box :hot, label: "Is Hot?"
+    = f.select :ice, ["100%", "70%", "50%", "30%", "0%"], wrapper_class: "ice_opt"
+    = f.select :sugar, ["100%", "70%", "50%", "30%", "0%"]
+    = f.form_group do
+      = f.submit "Apply", class: "btn btn-primary"

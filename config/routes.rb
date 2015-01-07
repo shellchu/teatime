@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   get 'sign_up', to: 'users#new'
   get 'sign_out', to: 'sessions#destroy'
   resources :events, only: [:index, :show, :new, :create] do
-    resources :orders, only: [:new, :create]
+    resources :orders, only: [:new, :create, :edit, :update]
   end
   resources :users, only: [:create]
   resources :sessions, only: [:create, :destroy]

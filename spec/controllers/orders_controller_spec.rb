@@ -21,6 +21,23 @@ RSpec.describe OrdersController, :type => :controller do
     end
   end
 
+  describe "GET edit" do
+    let!(:order) { Fabricate(:order, event: event, user: user) }
+    it_behaves_like "require_login" do
+      let(:action) { get :edit, id: order.id, event_id: event.id }
+    end
+
+    it "sets @order variable" do
+      get :edit, id: order.id, event_id: event.id
+      expect(assigns(:order)).to eq(order)
+    end
+
+    it "sets @event variable" do
+      get :edit, id: order.id, event_id: event.id
+      expect(assigns(:event)).to eq(event)
+    end
+  end
+
   describe "POST create" do
     it_behaves_like "require_login" do
       let(:order) { Fabricate(:order, event: event) }
@@ -31,7 +48,7 @@ RSpec.describe OrdersController, :type => :controller do
         sugar: order.sugar } }
     end
 
-    context "with vaild input" do
+    context "with valid input" do
       let(:order) { Fabricate.build(:order, event: event) }
       before do
         post :create, event_id: event.id, order: {
@@ -53,7 +70,7 @@ RSpec.describe OrdersController, :type => :controller do
       end
     end
 
-    context "with invaild input" do
+    context "with invalid input" do
       let(:order) { Fabricate.build(:order, event: event, ice: "wrong") }
       before do
         post :create, event_id: event.id, order: {
@@ -76,6 +93,58 @@ RSpec.describe OrdersController, :type => :controller do
 
       it "sets @event variable" do
         expect(assigns(:event)).to eq(event)
+      end
+    end
+  end
+
+  describe "PUT update" do
+    it_behaves_like "require_login" do
+      let(:order) { Fabricate(:order, event: event) }
+      let(:action) { put :update, event_id: event.id, id: order.id, order: {
+        beverage_id: order.beverage.id,
+        hot: order.hot,
+        ice: order.ice,
+        sugar: order.sugar } }
+    end
+
+    context "with valid input" do
+      let(:order) { Fabricate(:order, event: event, sugar: "0%") }
+      before do
+        put :update, id: order.id, event_id: event.id, order: {
+          beverage_id: order.beverage.id,
+          hot: order.hot,
+          ice: order.ice,
+          sugar: "70%" }
+      end
+      it "redirects to event show page" do
+        expect(response).to redirect_to event_path(event)
+      end
+      it "updates the order record" do
+        expect(Order.first.sugar).to eq("70%")
+      end
+    end
+
+    context "with invalid input" do
+      let(:order) { Fabricate(:order, event: event, sugar: "0%") }
+      before do
+        put :update, id: order.id, event_id: event.id, order: {
+          beverage_id: order.beverage.id,
+          hot: true,
+          ice: "50%",
+          sugar: "70%" }
+      end
+      it "renders the edit template" do
+        expect(response).to render_template :edit
+      end
+      it "dose not update the order record" do
+        expect(Order.first.sugar).to eq("0%")
+      end
+
+      it "sets the @event variable" do
+        expect(assigns(:event)).to be_kind_of(Event)
+      end
+      it "sets the @order variable" do
+        expect(assigns(:order)).to be_kind_of(Order)
       end
     end
   end

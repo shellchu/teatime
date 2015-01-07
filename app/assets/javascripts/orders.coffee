@@ -2,12 +2,14 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
+check_hot = ->
+  if $('#order_hot').prop("checked")
+    $('.ice_opt').hide()
+  else
+    $('.ice_opt').show()
 ready = ->
-  $('#order_hot').click ->
-    if $('#order_hot').prop("checked")
-      $('.ice_opt').hide()
-    else
-      $('.ice_opt').show()
+  check_hot()
+  $('#order_hot').click check_hot
   $('#new_order').submit ->
     if $('#order_hot').prop("checked")
       $('#order_ice').val('nil')

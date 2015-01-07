@@ -32,5 +32,5 @@
           %td= order.sugar
           %td= order.size
           %td= order.price
-          %td
-            %button.btn.btn-primary.btn-sm Edit
+          %td= link_to "Edit", edit_event_order_path(@event, order), class: "btn btn-primary btn-sm"
+            
