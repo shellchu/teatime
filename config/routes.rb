@@ -11,4 +11,5 @@ Rails.application.routes.draw do
   end
   resources :users, only: [:create]
   resources :sessions, only: [:create, :destroy]
+  resources :shops, only: [:show]
 end

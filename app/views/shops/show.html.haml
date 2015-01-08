@@ -1,0 +1,23 @@
+.col-md-offset-1.col-md-10
+  .well
+    %h1= @shop.name
+    .row
+      .col-md-3
+        %p= "Address: #{@shop.address}"
+        %p= "Phone: #{@shop.phone}"
+  %table.table.table-hover
+    %thead
+      %tr
+        %td #
+        %td Beverage
+        %td Hot/Cold
+        %td Size
+        %td Price
+    %tbody
+      - @beverages.each_with_index do |beverage, index|
+        %tr
+          %td= index
+          %td= beverage.name
+          %td= show_beverage_type(beverage)
+          %td= beverage.size
+          %td= beverage.price

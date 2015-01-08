@@ -6,7 +6,7 @@
         %p= "Address: #{@shop.address}"
         %p= "Phone: #{@shop.phone}"
       .col-md-offset-7.col-md-2
-        %button.btn.btn-primary.btn-lg Menu
+        = link_to "Menu", shop_path(@shop), class: "btn btn-primary btn-lg"
 
   = link_to "Order", new_event_order_path(@event), class: "btn btn-primary"
   %table.table.table-hover
@@ -33,4 +33,3 @@
           %td= order.size
           %td= order.price
           %td= link_to "Edit", edit_event_order_path(@event, order), class: "btn btn-primary btn-sm"
-            
